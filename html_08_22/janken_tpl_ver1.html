@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<script src="js/jquery-2.1.3.min.js"></script>
+<link rel="stylesheet" href="css/sample.css">
+<title>じゃんけん２</title>
+</head>
+<body>
+
+<header>
+  <h1>じゃんけん→国旗当てゲーム</h1>
+</header>
+
+<main>
+  <ul id="btn">
+    <li id="gu_btn">グー</li>
+    <li id="cho_btn">チョキ</li>
+    <li id="par_btn">パー</li>
+  </ul>
+  <div>コンピュータの出した手は？勝ったらタイルを一枚めくる「<span id="pc_hands">なに？</span>」</div>
+  <div id="judgment">勝ち</div>
+  <div id="national_flag">
+    <div>
+      <ul id="panel_first">
+        <li class="panel_black" id="panel1_1"></li>
+        <li class="panel_black" id="panel1_2"></li>
+        <li class="panel_black" id="panel1_3"></li>
+    </div>
+    <div>
+      <ul id="panel_second">
+        <li class="panel_black"></li>
+        <li class="panel_black"></li>
+        <li class="panel_black"></li>
+      </ul>
+    </div>
+
+    <!-- <img src="img/1.png" alt="国旗" id="national_flagimg"> -->
+  </div>
+
+</main>
+
+<footer></footer>
+<script>
+let round = 0;
+
+
+// ーーー勝ちの場合は、クイズを出題ーーー
+for(;round<1;){
+  $("#btn").on("click",function(){
+    const quizimg_num =Math.ceil(Math.random()*3);
+      if(quizimg_num==1){
+        $('#national_flag').css("background-image",'url("img/1.png")');
+        round=round+1;
+      };
+      if(quizimg_num==2){
+        $('#national_flag').css("background-image",'url("img/2.png")');
+        round=round+1;
+      };
+      if(quizimg_num==3){
+        $('#national_flag').css("background-image",'url("img/3.png")');
+        round=round+1;
+      };
+  });
+};
+// ーーークイズエリアーーー
+
+//じゃんけん用のSCRIPTを書いてください
+// ーーーーグーを選択したときーーーー
+$("#gu_btn").on("click",function(){
+    const your_num = 1;
+    // alert("yournum"+your_num);
+    const com_num = Math.ceil(Math.random()*3);
+    // alert("com_num"+com_num);
+    if(com_num==1){
+      // alert("コンピュータはグー");
+      $("#pc_hands").html("グー");
+    };
+    if(com_num==2){
+      // alert("コンピュータはチョキ");
+      $("#pc_hands").html("チョキ");
+    };
+    if(com_num==3){
+      // alert("コンピュータはパー");
+      $("#pc_hands").html("パー");
+    };
+    const judge_num = (your_num - com_num + 3)%3;
+    // alert("judge_num"+judge_num);
+    if(judge_num==1){
+      // alert("負け");
+      $("#judgment").html("負け");
+    };
+    if(judge_num==2){
+      // alert("勝ち");
+      $("#judgment").html("勝ち");
+      for (  var i = 0;  i < 1;  i++  ) {
+        $("#panel1_1").on("click",function(){
+          $("#panel1_1").remove("#panel1_1");
+          i = i + 1;
+          return i;
+        });
+        $("#panel1_2").on("click",function(){
+          $("#panel1_2").remove("#panel1_2");
+          i = i + 1;
+          return i;
+        });
+        $("#panel1_3").on("click",function(){
+          $("#panel1_3").remove("#panel1_3");
+          i = i + 1;
+          return i;
+        });
+      }
+
+      // // ーーー勝ちの場合は、クイズを出題ーーー
+      // const quizimg_num =Math.ceil(Math.random()*3);
+      //   if(quizimg_num==1){
+      //     $('#national_flag').css("background-image",'url("img/1.png")');
+      //   };
+      //   if(quizimg_num==2){
+      //     $('#national_flag').css("background-image",'url("img/2.png")');
+      //   };
+      //   if(quizimg_num==3){
+      //     $('#national_flag').css("background-image",'url("img/3.png")');
+      //   };
+      // // ーーークイズエリアーーー
+      
+    };
+    if(judge_num==0){
+      // alert("あいこ");
+      $("#judgment").html("あいこ");
+    };
+});
+// ーーーーグーを選択したときーーーー
+
+// ーーーーチョキを選択したときーーーー
+$("#cho_btn").on("click",function(){
+    const your_num = 2;
+    // alert("yournum"+your_num);
+    const com_num = Math.ceil(Math.random()*3);
+    // alert("com_num"+com_num);
+    if(com_num==1){
+      // alert("コンピュータはグー");
+      $("#pc_hands").html("グー");
+    };
+    if(com_num==2){
+      // alert("コンピュータはチョキ");
+      $("#pc_hands").html("チョキ");
+    };
+    if(com_num==3){
+      // alert("コンピュータはパー");
+      $("#pc_hands").html("パー");
+    };
+    const judge_num = (your_num - com_num + 3)%3;
+    // alert("judge_num"+judge_num);
+    if(judge_num==1){
+      // alert("負け");
+      $("#judgment").html("負け");
+    };
+    if(judge_num==2){
+      // alert("勝ち");
+      $("#judgment").html("勝ち");
+    };
+    if(judge_num==0){
+      // alert("あいこ");
+      $("#judgment").html("あいこ");
+    };
+});
+// ーーーーチョキを選択したときーーーー
+
+// ーーーーパーを選択したときーーーー
+$("#par_btn").on("click",function(){
+    const your_num = 3;
+    // alert("yournum"+your_num);
+    const com_num = Math.ceil(Math.random()*3);
+    if(com_num==1){
+      // alert("コンピュータはグー");
+      $("#pc_hands").html("グー");
+    };
+    if(com_num==2){
+      // alert("コンピュータはチョキ");
+      $("#pc_hands").html("チョキ");
+    };
+    if(com_num==3){
+      // alert("コンピュータはパー");
+      $("#pc_hands").html("パー");
+    };
+    const judge_num = (your_num - com_num + 3)%3;
+    // alert("judge_num"+judge_num);
+    if(judge_num==1){
+      // alert("負け");
+      $("#judgment").html("負け");
+    };
+    if(judge_num==2){
+      // alert("勝ち");
+      $("#judgment").html("勝ち");
+    };
+    if(judge_num==0){
+      // alert("あいこ");
+      $("#judgment").html("あいこ");
+    };
+});
+// // ーーーーパーを選択したときーーーー  
+
+// ーーーーーパネル選択ーーーーー
+// $("#panel1_1").on("click",function(){
+//   $("#panel1_1").remove();
+// });
+
+// ーーーここまでパネル選択ーーー
+
+
+
+
+
+
+// var images = [ 'img/1.png', 'img/2.png', 'img/3.png' ],  // ランダム表示させたい画像のパス
+//     number = Math.ceil(Math.random()*3) - 1, // 0~2の数値を算出 
+//     selectedImg = images[number]; // 算出された数値を元に、1行目の配列から取り出す
+
+// $('#national_flagimg').attr('src', selectedImg);
+// const quizimg_num =Math.ceil(Math.random()*3);
+// if(quizimg_num==1){
+//   $('#national_flag').css("background-image",'url("img/1.png")');
+// };
+// if(quizimg_num==2){
+//   $('#national_flag').css("background-image",'url("img/2.png")');
+// };
+// if(quizimg_num==3){
+//   $('#national_flag').css("background-image",'url("img/3.png")');
+// };
+
+// $('#national_flag').css("background-image",'url("img/1.png")');
+// $('#national_flag').css("background-image",'url("img/2.png")');
+// $('#national_flag').css("background-image",'url("img/3.png")');
+// .attr('src', ç); // id="randomImg"のsrcを書き換える
+// $("#national_flag").html('<img src="img/1.png" alt="ベルギー">')
+
+</script>
+
+</body>
+</html>
